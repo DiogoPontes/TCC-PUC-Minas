@@ -1,3 +1,3 @@
 # Pontifícia Universidade Católica de Minas Gerais 
-# Disciplina: Trabalho de Conclusão de Curso 
-# Aluno David de Amorim Cortez
+# TCC - Sistema de Controle de Logistica
+# Aluno: Diogo da Silva de Pontes
