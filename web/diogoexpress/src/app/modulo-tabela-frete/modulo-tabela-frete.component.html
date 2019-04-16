@@ -1,0 +1,167 @@
+<mdb-navbar SideClass="navbar navbar-expand-lg bg-white scrolling-navbar" [containerInside]="true">
+        <logo>
+                <div style="height:36px; width: 150px;" class="logobarra">
+                    </div>
+        </logo>
+        <links>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active waves-light" mdbRippleRadius>
+                    <button style="background-color: white; border-radius: 15px;"  [disabled]="loading" class="btn btn-sm">
+                        <a class="nav-link" style="color: black;" routerLink="/home" >Home <span class="sr-only">(current)</span></a>
+                    </button>
+                </li>
+                <li class="nav-item waves-light" mdbRippleRadius>
+                    <button style="background-color: white; border-radius: 15px;"  [disabled]="loading" class="btn btn-sm">
+                        <a class="nav-link" style="color: black;" routerLink="/modulo-coleta">Solicitação de Coleta</a>
+                    </button>
+                </li>
+                <li class="nav-item waves-light" mdbRippleRadius>
+                        <button  style="background-color: white; border-radius: 15px;"  [disabled]="loading" class="btn btn-sm">
+                        <a class="nav-link" style="color: black;" routerLink="/modulo-frete">Tabela de Frete</a>
+                    </button>
+                </li>
+                <li class="nav-item waves-light" mdbRippleRadius>
+                    <button  style="background-color: white; border-radius: 15px;"  [disabled]="loading" class="btn btn-sm">
+                        <a class="nav-link" style="color: black;" routerLink="/modulo-controle-frete-simulacao">Simulação de Frete</a>
+                    </button>
+                </li> 
+            </ul>
+            <ul class="navbar-nav nav-flex-icons">
+                
+                <li class="nav-item " mdbRippleRadius>
+                    
+                        <button title="Sair" style="background-color: white; border-radius: 15px;"  [disabled]="loading" class="btn btn-sm">
+                                <div style="height:32px; width: 32px;" class="botao-exit"  (click)="logout()">
+                                </div> 
+                            </button>
+                         
+                        
+                    </li>  
+            </ul>
+        </links>
+  </mdb-navbar>
+  <!-- Main -->
+  <main>
+        <div class="container" style="height:1300px;">
+            <section class="section feature-box pt-5" id="feature" data-spy="feature"
+            data-target="#feature">
+                    <header class="header">
+                        
+                        <div class="row">
+                            <div class="col-7">
+                                   
+                            
+                                    <div class=imagemDeFundo>
+                                        <!--- http://www.vale.com/brasil/PT/suppliers/collection-materials/PublishingImages/header-coleta-materiais.jpg -->
+                                    </div>
+                            </div>
+                        </div>
+                    </header>
+                </section>
+            
+                         
+                    <section class="main">
+                            <form>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
+                                            <input type="text" class="form-control" name="searchString" placeholder="Tipo de Carga..." [(ngModel)]="searchString">
+                                        </div>
+                                    </div>
+                                </form>
+                                
+                                        
+                                        
+                                            
+                                       
+                                        
+                                    
+
+                <div class="row">
+                    <div class="col-md-10">
+
+
+                        <div class="table-responsive">
+                            <table class="table table-hover table-responsive-md mb-0" [mfData]="fretes" #mf="mfDataTable" [mfRowsOnPage]="5" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+                                <thead>
+                                    <tr>
+                                        <th>id</th>
+                                    <th> <mfDefaultSorter by="kmInicial">Km Inicial</mfDefaultSorter></th>
+                                        <th>Km Final</th>
+                                        <th>Custo por KM/Eixo</th>
+                                        <th>Tipo de Carga</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let frete of fretes | filterPipe : 'tipoCarga' : searchString; let i = index">
+                                        <th scope="row">{{frete.id}}</th>
+                                        <td>{{frete.kmInicial}}</td>
+                                        <td>{{frete.kmFinal}}</td>
+                                        <td>{{frete.custoPorKm}} </td>
+                                        <td>{{frete.tipoCarga}}</td>
+                                        <td>
+                                            
+                                            <div title="Editar" style="height:32px; width: 32px;" class="botao-edit" (click)="editFretePage(frete)">
+                                            </div>  
+                                        </td>
+                                        <td>  
+                                            
+                                            <div title="Apagar" style="height:32px; width: 32px;" class="botao-delete" (click)="basicModal.show(frete)">
+                                            </div>
+                                        </td>
+                                        <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
+                                                aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+                                                        <span aria-hidden="true">×</span>
+                                                        </button>
+                                                        <h4 class="modal-title w-100" id="myModalLabel">Desejar apagar esse Custo ?</h4>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <div class="row">
+                                                            <div class="col-6">
+                                                                <button title="Nao" style="background-color: white; border-radius: 15px;"  [disabled]="loading" class="btn btn-sm">
+                                                                    <div style="height:32px; width: 32px;" class="botao-no" aria-label="Close" (click)="basicModal.hide()" mdbWavesEffect>
+                                                                    </div> 
+                                                                </button>
+                                                            </div>
+                                                            <div class="col-0">
+                                                                <button title="Sim" style="background-color: white; border-radius: 15px;"  [disabled]="loading" class="btn btn-sm">
+                                                                    <div style="height:32px; width: 32px;" class="botao-ok" (click)="deleteFrete(frete)" mdbWavesEffect>
+                                                                    </div> 
+                                                                </button>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                          
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                    </tr>
+                                    
+                                </tbody>
+                                <tfoot>
+                                        <tr>
+                                            <td colspan="4">
+                                                <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+                                            </td>
+                                        </tr>
+                                        </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <button title="Novo Custo de Frete" style="background-color: white; border-radius: 15px;"  [disabled]="loading" class="btn btn-sm">
+                            <div style="height:64px; width: 64px;" class="botao-add" (click)="redirectNovoFretePage()">
+                            </div> 
+                        </button>
+                        
+                    </div>
+                </div>
+            </section>     
+        </div>
+    </main>

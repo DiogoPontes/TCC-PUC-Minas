@@ -1,0 +1,25 @@
+.imagemDeFundo{
+    background-image: url("imagens/solicitacao.jpg"); 
+    height: 321px;
+    width: 1110px;
+    
+}
+.botao-back {
+    background-image: url("imagens/back.png");
+
+    cursor: pointer;
+}
+.botao-editar {
+    background-image: url("imagens/editar.png");
+    cursor: pointer;
+}
+.botao-exit {
+    background-image: url("imagens/exit.png");
+    cursor: pointer;
+  
+    
+    }
+.logobarra{
+    background-image: url("imagens/logo_barra.png"); 
+    
+}

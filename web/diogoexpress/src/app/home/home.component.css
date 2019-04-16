@@ -1,0 +1,25 @@
+.imagemDeFundo{
+   background-image: url("imagens/home_old.jpg"); 
+   height: 600px;
+    
+}
+
+.logotipo{
+    background-image: url("imagens/logo.png"); 
+     
+ }
+
+ .logobarra{
+    background-image: url("imagens/logo_barra.png"); 
+     
+ }
+ .botao-exit {
+   background-image: url("imagens/exit.png");
+   cursor: pointer;
+ 
+   
+   }
+.botao-login {
+   background-image: url("imagens/login2.png");
+   cursor: pointer;
+}

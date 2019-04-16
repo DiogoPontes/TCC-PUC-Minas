@@ -1,0 +1,141 @@
+<mdb-navbar SideClass="navbar navbar-expand-lg bg-white scrolling-navbar" [containerInside]="true">
+        <logo>
+                <div style="height:36px; width: 150px;" class="logobarra">
+                    </div>
+        </logo>
+        <links>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active waves-light" mdbRippleRadius>
+                    <button  style="background-color: white; border-radius: 15px;"  [disabled]="loading" class="btn btn-sm">
+                        <a class="nav-link" style="color: black;" routerLink="/home" >Home <span class="sr-only">(current)</span></a>
+                    </button>
+                </li>
+                <li class="nav-item waves-light" mdbRippleRadius>
+                    <button  style="background-color: white; border-radius: 15px;"  [disabled]="loading" class="btn btn-sm">
+                        <a class="nav-link" style="color: black;" routerLink="/modulo-coleta">Solicitação de Coleta</a>
+                    </button>
+                </li>
+                <li class="nav-item waves-light" mdbRippleRadius>
+                        <button  style="background-color: white; border-radius: 15px;"  [disabled]="loading" class="btn btn-sm">
+                        <a class="nav-link" style="color: black;" routerLink="/modulo-frete">Tabela de Frete</a>
+                    </button>
+                </li>
+                <li class="nav-item waves-light" mdbRippleRadius>
+                    <button  style="background-color: white; border-radius: 15px;"  [disabled]="loading" class="btn btn-sm">
+                        <a class="nav-link" style="color: black;" routerLink="/modulo-controle-frete-simulacao">Simulação de Frete</a>
+                    </button>
+                </li> 
+            </ul>
+            <ul class="navbar-nav nav-flex-icons">
+                
+                <li class="nav-item " mdbRippleRadius>
+                    
+                        <button title="Sair" style="background-color: white; border-radius: 15px;"  [disabled]="loading" class="btn btn-sm">
+                                <div style="height:32px; width: 32px;" class="botao-exit"  (click)="logout()">
+                                </div> 
+                            </button>
+                         
+                        
+                    </li>  
+            </ul>
+        </links>
+</mdb-navbar>
+<!-- Main -->
+<main>
+        
+    <div class="container" style="height:1300px;">
+
+            
+            <section class="section feature-box pt-5" id="feature" data-spy="feature"
+            data-target="#feature">
+                    <header class="header">
+                        
+                        <div class="row">
+                            <div class="col-7">
+                                   
+                            
+                                    <div class=imagemDeFundo>
+                                        <!--- http://www.vale.com/brasil/PT/suppliers/collection-materials/PublishingImages/header-coleta-materiais.jpg -->
+                                    </div>
+                            </div>
+                        </div>
+                    </header>
+                </section>
+            
+            <section class="main">
+                    <form>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
+                                    <input type="text" class="form-control" name="searchString" placeholder="Nome Solicitante..." [(ngModel)]="searchString">
+                                </div>
+                            </div>
+                        </form>
+                <div class="table-responsive">
+                    <table class="table table-hover table-responsive-md mb-0">
+                        <thead>
+                            <tr>
+                                <th>Numero da Solicitação</th>
+                                <th>Data Solicitacao</th>
+                                <th>Data da Volta</th>
+                                <th>Nome do Solicitante</th>
+                                <th>Email do Solicitante</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let solic of solicitacoes | filterPipe : 'nomeSolic': searchString; let i = index ">
+                                <th scope="row">{{solic.id}}</th>
+                                <td>{{solic.dataSolic | date:'dd-MM-yyyy'}}</td>
+                                <td>{{solic.dataVolta | date:'dd-MM-yyyy'}}</td>
+                                <td>{{solic.nomeSolic}} </td>
+                                <td>{{solic.emailSolic}}</td>
+                                <td>
+                                        <div title="Visualizar" style="height:32px; width: 32px;" class="botao-view" (click)="editSolicitacaoPage(solic)">
+                                            </div> 
+                                </td>
+                                <td> 
+                                            <div title="Apagar" style="height:32px; width: 32px;" class="botao-delete" (click)="basicModal.show(solic)">
+                                                </div>
+                                </td>
+                                <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
+                                        aria-hidden="true">
+                                         <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+                                                    <span aria-hidden="true">×</span>
+                                                    </button>
+                                                    <h4 class="modal-title w-100" id="myModalLabel">Desejar apagar esse Custo ?</h4>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <button title="Nao" style="background-color: white; border-radius: 15px;"  [disabled]="loading" class="btn btn-sm">
+                                                                <div style="height:32px; width: 32px;" class="botao-no" aria-label="Close" (click)="basicModal.hide()" mdbWavesEffect>
+                                                                </div> 
+                                                            </button>
+                                                        </div>
+                                                        <div class="col-0">
+                                                            <button title="Sim" style="background-color: white; border-radius: 15px;"  [disabled]="loading" class="btn btn-sm">
+                                                                <div style="height:32px; width: 32px;" class="botao-ok" (click)="deleteSolicitacao(solic)" mdbWavesEffect>
+                                                                </div> 
+                                                            </button>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                      
+                                                </div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                    </div>
+                </section>     
+    </div>
+</main>

@@ -1,0 +1,78 @@
+<mdb-navbar SideClass="navbar navbar-expand-lg  bg-white scrolling-navbar" [containerInside]="true">
+        <logo>
+                <div style="height:36px; width: 150px;" class="logobarra">
+                    </div>
+        </logo>
+        <links>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active waves-light" mdbRippleRadius>
+                    <button style="background-color: white; border-radius: 15px;"  [disabled]="loading" class="btn btn-sm">
+                        <a class="nav-link" style="color: black;" routerLink="/home" >Home <span class="sr-only">(current)</span></a>
+                    </button>
+                </li>
+                <li class="nav-item waves-light" mdbRippleRadius>
+                    <button style="background-color: white; border-radius: 15px;"  [disabled]="loading" class="btn btn-sm">
+                        <a class="nav-link" style="color: black;" routerLink="/modulo-coleta">Solicitação de Coleta</a>
+                    </button>
+                </li>
+                <li class="nav-item waves-light" mdbRippleRadius>
+                        <button style="background-color: white; border-radius: 15px;"  [disabled]="loading" class="btn btn-sm">
+                        <a class="nav-link" style="color: black;" routerLink="/modulo-frete">Tabela de Frete</a>
+                    </button>
+                </li>
+                <li class="nav-item waves-light" mdbRippleRadius>
+                    <button style="background-color: white; border-radius: 15px;"  [disabled]="loading" class="btn btn-sm">
+                        <a class="nav-link" style="color: black;" routerLink="/modulo-controle-frete-simulacao">Simulação de Frete</a>
+                    </button>
+                </li> 
+            </ul>
+            <ul class="navbar-nav nav-flex-icons">
+                
+                <li class="nav-item " mdbRippleRadius>
+                    
+                        <button title="Sair" style="background-color: white; border-radius: 15px;"  [disabled]="loading" class="btn btn-sm">
+                                <div style="height:32px; width: 32px;" class="botao-exit"  (click)="logout()">
+                                </div> 
+                            </button>
+                            <button title="Login" style="background-color: white; border-radius: 15px;"  [disabled]="loading" class="btn btn-sm">
+                                    <div style="height:32px; width: 32px;" class="botao-login"  (click)="login()">
+                                    </div> 
+                                </button>
+                      
+                        
+                    </li>  
+            </ul>
+        </links>
+      </mdb-navbar>
+      <!-- Main -->
+      <main> 
+    <div class=imagemDeFundo>
+
+        <div class="container" style="height:1000px;">
+                       
+            <section class="section feature-box pt-5" id="feature" data-spy="feature" data-target="#feature">
+        
+                    <div class="row pb-3">
+                        <div class="col-8">
+                            <div style="height:112px; width: 470px;" class="logotipo">
+                            </div>
+                        </div>
+                        <div class="col-4">
+                                <p >
+                                    <font size='15' style="color: white;">
+                                        Bem vindo !!   {{usuario}}
+                                    </font>
+                                </p>
+                        </div>
+                    </div>
+   
+            </section>
+        </div>
+    </div>
+    <div class="container" style="height:600px;">
+        <section class="section feature-box pt-5" id="feature" data-spy="feature" data-target="#feature">
+         <!--Grid row-->
+         
+        </section>
+    </div>
+      </main>

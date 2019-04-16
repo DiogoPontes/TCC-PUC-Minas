@@ -1,0 +1,26 @@
+.logobarra{
+    background-image: url("imagens/logo_barra.png"); 
+     
+ }
+ .imagemDeFundo{
+    background-image: url("imagens/tabela_frete.jpg"); 
+    height: 321px;
+    width: 1110px;
+    
+}
+.botao-back {
+    background-image: url("imagens/back.png");
+
+    cursor: pointer;
+}
+.botao-save {
+    background-image: url("imagens/save.png");
+    
+    cursor: pointer;
+}
+.botao-exit {
+    background-image: url("imagens/exit.png");
+    cursor: pointer;
+  
+    
+    }

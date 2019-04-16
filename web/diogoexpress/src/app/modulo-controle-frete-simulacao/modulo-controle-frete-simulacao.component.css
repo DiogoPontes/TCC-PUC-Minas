@@ -1,0 +1,20 @@
+.botao-calc {
+    background-image: url("imagens/calculate.png");
+    cursor: pointer;
+}
+.logobarra{
+    background-image: url("imagens/logo_barra.png"); 
+     
+ }
+ .imagemDeFundo{
+    background-image: url("imagens/simu.png"); 
+    height: 321px;
+    width: 1110px;
+    
+}
+.botao-exit {
+    background-image: url("imagens/exit.png");
+    cursor: pointer;
+  
+    
+    }

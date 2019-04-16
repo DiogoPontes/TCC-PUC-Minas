@@ -1,0 +1,187 @@
+<mdb-navbar SideClass="navbar navbar-expand-lg  bg-white scrolling-navbar" [containerInside]="true">
+    <logo>
+        <div style="height:36px; width: 150px;" class="logobarra">
+            </div>
+</logo>
+    <links>
+      <ul class="navbar-nav mr-auto">
+          <li class="nav-item active waves-light" mdbRippleRadius>
+              <button style="background-color: white; border-radius: 15px;"  [disabled]="loading" class="btn btn-sm">
+                  <a class="nav-link" style="color: black;" routerLink="/home" >Home <span class="sr-only">(current)</span></a>
+              </button>
+          </li>
+          <li class="nav-item waves-light" mdbRippleRadius>
+              <button style="background-color: white; border-radius: 15px;"  [disabled]="loading" class="btn btn-sm">
+                  <a class="nav-link" style="color: black;" routerLink="/modulo-coleta">Solicitação de Coleta</a>
+              </button>
+          </li>
+          <li class="nav-item waves-light" mdbRippleRadius>
+                  <button style="background-color: white; border-radius: 15px;"  [disabled]="loading" class="btn btn-sm">
+                  <a class="nav-link" style="color: black;" routerLink="/modulo-frete">Tabela de Frete</a>
+              </button>
+          </li>
+          <li class="nav-item waves-light" mdbRippleRadius>
+              <button style="background-color: white; border-radius: 15px;"  [disabled]="loading" class="btn btn-sm">
+                  <a class="nav-link" style="color: black;" routerLink="/modulo-controle-frete-simulacao">Simulação de Frete</a>
+              </button>
+          </li> 
+      </ul>
+      <ul class="navbar-nav nav-flex-icons">
+          
+          <li class="nav-item " mdbRippleRadius>
+              
+                  <button title="Sair" style="background-color: white; border-radius: 15px;"  [disabled]="loading" class="btn btn-sm">
+                          <div style="height:32px; width: 32px;" class="botao-exit"  (click)="logout()">
+                          </div> 
+                      </button>
+                     
+                  
+              </li>  
+      </ul>
+  </links>
+  </mdb-navbar>
+  <!-- Main -->
+  <main>
+    <div class="container" style="height:1300px;">
+        <section class="section feature-box pt-5" id="feature" data-spy="feature"
+        data-target="#feature">
+                <header class="header">
+                    
+                    <div class="row">
+                        <div class="col-7">
+                               
+                        
+                                <div class=imagemDeFundo>
+                                    <!--- http://www.vale.com/brasil/PT/suppliers/collection-materials/PublishingImages/header-coleta-materiais.jpg -->
+                                </div>
+                        </div>
+                    </div>
+                </header>
+            </section>
+      <section class="section feature-box pt-5" id="feature" data-spy="feature"
+      data-target="#feature">
+      <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm">
+            <div class="form-row">
+              <div class="form-group col-md-3">
+                <label for="inputEmail4">Data da Solicitação</label>
+                <input type="date" class="form-control" id="inputEmail4" name="dataSolic" readonly [(ngModel)]="solicitacao.dataSolic" #dataSolic="ngModel" required placeholder="Data da Solicitação">
+                <span *ngIf="f.submitted && !dataSolic.valid" class="help-block">Data da Solicitação é obrigatório</span>
+            </div>
+              <div class="form-group col-md-3">
+                <label for="inputPassword4">Data da Volta</label>
+                <input type="date"  class="form-control" id="inputPassword4" readonly placeholder="Data da Volta" name="dataVolta"  [(ngModel)]="solicitacao.dataVolta" #dataVolta="ngModel" required>
+                <span *ngIf="f.submitted && !dataVolta.valid" class="help-block">Data da Volta é obrigatório</span>
+            </div>
+            
+            
+                <div class="form-group col-6">
+                    <label for="inputAddress">Nome do Solicitante</label>
+                    <input type="text" class="form-control" id="inputAddress" readonly placeholder="Nome do Solicitante" name="nomeSolic"  [(ngModel)]="solicitacao.nomeSolic" #nomeSolic="ngModel" required>
+                    <span *ngIf="f.submitted && !nomeSolic.valid" class="help-block">Nome do Solicitante é obrigatório</span>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-6">
+                    <label for="inputAddress2">Email</label>
+                    <input type="email" class="form-control" id="inputAddress2" readonly placeholder="Email" name="emailSolic"  [(ngModel)]="solicitacao.emailSolic" #emailSolic="ngModel" required>
+                    <span *ngIf="f.submitted && !emailSolic.valid" class="help-block">Email do Solicitante é obrigatório</span>
+                </div>
+           
+            <div class="form-group col-6">
+                    <label for="inputEndeSolic">Endereço</label>
+                    <input type="text" class="form-control" id="inputEndeSolic" readonly placeholder="Endereço" name="endeSolic"  [(ngModel)]="solicitacao.endeSolic" #endeSolic="ngModel"  required>
+                    <span *ngIf="f.submitted && !endeSolic.valid" class="help-block">Endereço é obrigatório</span>
+                </div>
+              </div>
+              <div class="form-row">
+              <div class="form-group col-3">
+                <label for="inputCity">Cidade</label>
+                <input type="text" class="form-control" id="inputCity" placeholder="Cidade" readonly name="cidade"  [(ngModel)]="solicitacao.cidade" #cidade="ngModel"  required>
+                <span *ngIf="f.submitted && !cidade.valid" class="help-block">Cidade é obrigatório</span>
+            </div>
+            
+              <div class="form-group col-3">
+                <label for="inputState">Estado</label>
+                <select id="inputState" class="form-control" name="uf" readonly [(ngModel)]="solicitacao.uf" #uf="ngModel" required>
+                  <option selected>Uf...</option>
+                  <option>Acre (AC)</option>
+                  <option>Alagoas (AL)</option>
+                  <option>Amazonas (AM)</option>
+                  <option>Bahia (BA)</option>
+                  <option>Ceará (CE)</option>
+                  <option>Distrito Federal (DF)</option>
+                  <option>Espírito Santo (ES)</option>
+                  <option>Goiás (GO)</option>
+                  <option>Maranhão (MA)</option>
+                  <option>Mato Grosso (MT)</option>
+                  <option>Mato Grosso do Sul (MS)</option>
+                  <option>Minas Gerais (MG)</option>
+                  <option>Pará (PA)</option>
+                  <option>Paraíba (PB)</option>
+                  <option>Paraná (PR)</option>
+                  <option>Pernambuco (PE)</option>
+                  <option>Piauí (PI)</option>
+                  <option>Rio de Janeiro (RJ)</option>
+                  <option>Rio Grande do Norte (RN)</option>
+                  <option>Rio Grande do Sul (RS)</option>
+                  <option>Rondônia (RO)</option>
+                  <option>Roraima (RR)</option>
+                  <option>Santa Catarina (SC)</option>
+                  <option>São Paulo (SP)</option>
+                  <option>Sergipe (SE)</option>
+                  <option>Tocantins (TO)</option>
+                </select>
+                <span *ngIf="f.submitted && !uf.valid" class="help-block">Estado é obrigatório</span>
+              </div>
+              <div class="form-group col-3">
+                <label for="inputZip">Veículo</label>
+                <input type="text" placeholder="Veículo" class="form-control" readonly id="inputZip" name="veiculo" [(ngModel)]="solicitacao.veiculo" #veiculo="ngModel" required>
+                <span *ngIf="f.submitted && !veiculo.valid" class="help-block">Veículo é obrigatório</span>
+            </div>
+            <div class="form-group col-3" id="uf">
+                <label for="inputState">Empresa Parceira</label>
+                <select id="inputState" class="form-control"  name="empresa" disabled  [(ngModel)]="solicitacao.idEmpresa" #transportadora="ngModel">
+                  <option  *ngFor='let empre of empresasParceiras' [value]="empre.codEmpresaParceira">
+                    {{empre.nome}}
+                  </option>
+                </select>
+              </div>  
+            </div>
+            <div class="form-row">
+                <div class="form-group col-3">
+                  <div class="form-group">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="gridCheck"  name="demandaTransferida" [(ngModel)]="solicitacao.demandaTransferida" #demandaTransferida="ngModel"> 
+                      <label class="form-check-label" for="gridCheck">
+                        Demanda Transferida
+                      </label>
+                    </div>
+                    <div class="form-group col-12" id="uf">
+                      <label for="inputState">Transportadora Parceira</label>
+                      <select id="inputState" class="form-control"  name="transportadora"  [(ngModel)]="solicitacao.idTransportadora" #transportadora="ngModel">
+                        <option  *ngFor='let transp of transportadoras' [value]="transp.codTransportadora">
+                          {{transp.nome}}
+                        </option>
+                      </select>
+                    </div>  
+                  </div>
+                </div>
+                <div class="form-group col-4">
+                    <button title="Voltar" style="background-color: white; border-radius: 15px;"  [disabled]="loading" class="btn btn-sm">
+                        <div style="height:64px; width: 64px;" class="botao-back" routerLink="/modulo-coleta">
+                        </div> 
+                    </button>
+                    <button title="Editar" style="background-color: white; border-radius: 15px;"  [disabled]="loading" class="btn btn-sm">
+                        <div style="height:64px; width: 64px;" class="botao-editar" >
+                        </div> 
+                    </button>
+                                    <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                </div>
+              </div>
+          </form>
+       
+     <router-outlet></router-outlet>
+    </section>
+    </div>
+  </main>
+  

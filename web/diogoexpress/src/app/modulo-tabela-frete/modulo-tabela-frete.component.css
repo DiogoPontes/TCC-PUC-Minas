@@ -1,0 +1,40 @@
+
+.logobarra{
+    background-image: url("C:/Note/TCC/web/diogoexpress/imagens/logo_barra.png"); 
+     
+ }
+
+ .imagemDeFundo{
+    background-image: url("C:/Note/TCC/web/diogoexpress/imagens/tabela_frete.jpg"); 
+    height: 321px;
+    width: 1110px;
+    
+}
+.botao-edit {
+    background-image: url("imagens/edit.png");
+    cursor: pointer;
+  
+    
+    }
+.botao-delete {
+    background-image: url("imagens/delete.png");
+    cursor: pointer;
+    }
+.botao-add {
+    background-image: url("imagens/add.png");
+    cursor: pointer;
+}
+.botao-no {
+    background-image: url("imagens/no.png");
+    cursor: pointer;
+}
+.botao-ok {
+    background-image: url("imagens/like.png");
+    cursor: pointer;
+}
+.botao-exit {
+    background-image: url("imagens/exit.png");
+    cursor: pointer;
+  
+    
+    }

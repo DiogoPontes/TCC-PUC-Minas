@@ -1,0 +1,104 @@
+<mdb-navbar SideClass="navbar navbar-expand-lg bg-white scrolling-navbar" [containerInside]="true">
+        <logo>
+                <div style="height:36px; width: 150px;" class="logobarra">
+                    </div>
+        </logo>
+        <links>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active waves-light" mdbRippleRadius>
+                    <button style="background-color: white; border-radius: 15px;"  [disabled]="loading" class="btn btn-sm">
+                        <a class="nav-link" style="color: black;" routerLink="/home" >Home <span class="sr-only">(current)</span></a>
+                    </button>
+                </li>
+                <li class="nav-item waves-light" mdbRippleRadius>
+                    <button style="background-color: white; border-radius: 15px;"  [disabled]="loading" class="btn btn-sm">
+                        <a class="nav-link" style="color: black;" routerLink="/modulo-coleta">Solicitação de Coleta</a>
+                    </button>
+                </li>
+                <li class="nav-item waves-light" mdbRippleRadius>
+                        <button style="background-color: white; border-radius: 15px;"  [disabled]="loading" class="btn btn-sm">
+                        <a class="nav-link" style="color: black;" routerLink="/modulo-frete">Tabela de Frete</a>
+                    </button>
+                </li>
+                <li class="nav-item waves-light" mdbRippleRadius>
+                    <button style="background-color: white; border-radius: 15px;"  [disabled]="loading" class="btn btn-sm">
+                        <a class="nav-link" style="color: black;" routerLink="/modulo-controle-frete-simulacao">Simulação de Frete</a>
+                    </button>
+                </li> 
+            </ul>
+            <ul class="navbar-nav nav-flex-icons">
+                
+                <li class="nav-item " mdbRippleRadius>
+                    
+                        <button title="Sair" style="background-color: white; border-radius: 15px;"  [disabled]="loading" class="btn btn-sm">
+                                <div style="height:32px; width: 32px;" class="botao-exit"  (click)="logout()">
+                                </div> 
+                            </button>
+                         
+                        
+                    </li>  
+            </ul>
+        </links>
+  </mdb-navbar>
+  <!-- Main -->
+  <main>
+    <div class="container" style="height:1300px;">
+            <section class="section feature-box pt-5" id="feature" data-spy="feature"
+            data-target="#feature">
+                    <header class="header">
+                        
+                        <div class="row">
+                            <div class="col-7">
+                                   
+                            
+                                    <div class=imagemDeFundo>
+                                        <!--- http://www.vale.com/brasil/PT/suppliers/collection-materials/PublishingImages/header-coleta-materiais.jpg -->
+                                    </div>
+                            </div>
+                        </div>
+                    </header>
+                </section>
+      <section class="section feature-box pt-5" id="feature" data-spy="feature"
+      data-target="#feature">
+      <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm">
+            <div class="form-row">
+              <div class="form-group col-3">
+                <label for="inputEmail4">Distância(KM) </label>
+                <input type="number" class="form-control" id="inputAddress" placeholder="Distância(KM)" name="distancia"  [(ngModel)]="simulcaoFrete.kmRodado" #distancia="ngModel" required>
+                <span *ngIf="f.submitted && !distancia.valid" class="help-block">Km Rodado é obrigatório</span>
+            </div>
+              <div class="form-group col-3">
+                <label for="inputPassword4">Quantidade de Eixos</label>
+                <input type="number"  class="form-control" id="inputPassword4" placeholder="Quantidade de Eixos" name="qtdEixos"  [(ngModel)]="simulcaoFrete.qtdEixos" #qtdEixos="ngModel" required>
+                <span *ngIf="f.submitted && !qtdEixos.valid" class="help-block">Quantidade de Eixos</span>
+            </div>
+            
+            
+                <div class="form-group col-3">
+                    <label for="inputState">Tipo de Carga</label>
+                    <select id="inputState" class="form-control" name="tipoCarga"  [(ngModel)]="simulcaoFrete.tipoCarga" #tipoCarga="ngModel" required>
+                      <option selected>Tipo de Carga...</option>
+                      <option>Carga Geral</option>
+                      <option>Carga Granel</option>
+                      <option>Carga Neogranel</option>
+                      <option>Carga Frigorifíca</option>
+                      <option>Carga Perigosa</option>
+                    </select>
+                    <span *ngIf="f.submitted && !tipoCarga.valid" class="help-block">Tipo de Carga é obrigatório</span>
+                  </div>
+            
+            <button title="Calcular" style="background-color: white; border-radius: 15px;"  [disabled]="loading" class="btn btn-sm">
+                    <div style="height:64px; width: 64px;" class="botao-calc" >
+                    </div> 
+                </button>
+
+            </div>
+
+          <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+          </form>
+       
+     <router-outlet></router-outlet>
+    </section>
+    </div>
+  </main>
+  
